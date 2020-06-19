@@ -3,6 +3,7 @@ import m from 'mithril';
 import global from '../global';
 import Repository from '../model/repository';
 import FileViewer from './FileViewer';
+import highlightLines from '../highlight';
 
 interface Attrs {
   path: string;
@@ -39,6 +40,16 @@ class RepositoryViewer implements m.ClassComponent<Attrs> {
     m.redraw();
   }
 
+  runTests() {
+    if (!this.repository) return;
+    this.repository.runTests().then((coverage) => {
+      if (!this.repository) return;
+      if (this.filePath && this.filePath.length > 0) {
+        highlightLines(this.filePath, this.repository.coverageForFile(this.filePath));
+      }
+    });
+  }
+
   view() {
     if (this.repository === undefined) {
       return m('section.section', 'Fetching repository from Github...');
@@ -53,7 +64,7 @@ class RepositoryViewer implements m.ClassComponent<Attrs> {
 
             m('.level-right',
               m('button.button.is-info', {
-                onclick: () => this.repository && this.repository.runTests()
+                onclick: () => {this.runTests()}
               }, 'RUN TESTS')
             )
           ),

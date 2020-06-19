@@ -1,14 +1,4 @@
 import m from 'mithril';
-import {Action, State, fire, handle, state} from '../action';
-
-class SetLoadPathAction {
-  type: string = 'set-load-path';
-  value: string;
-
-  constructor(path: string) {
-    this.value = path;
-  }
-}
 
 class LoadForm implements m.ClassComponent {
   path: string = '';
@@ -33,7 +23,7 @@ class LoadForm implements m.ClassComponent {
         )
       ),
       m('footer.card-footer',
-        m('a.button.is-info', {onclick: this.submitLoadForm}, 'LOAD')
+        m('a.button.is-info', {onclick: () => this.submitLoadForm()}, 'LOAD')
       )
     )));
   }

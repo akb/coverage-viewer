@@ -1,24 +1,12 @@
 import m from 'mithril';
 
 import global from '../global';
+import {Line} from '../highlight';
+import {ProjectCoverage, CoverageBlock} from '../model/coverage';
 
 const fixtures = {
   "google/uuid": {"owner":"google","name":"uuid","stars":1928,"files":[".travis.yml","CONTRIBUTING.md","CONTRIBUTORS","LICENSE","README.md","dce.go","doc.go","go.mod","hash.go","json_test.go","marshal.go","node.go","node_js.go","node_net.go","seq_test.go","sql.go","sql_test.go","time.go","util.go","uuid.go","uuid_test.go","version1.go","version4.go"]}
 };
-
-export interface ProjectCoverage {
-  files: FileCoverage[];
-}
-
-export interface FileCoverage {
-	fileName: string;
-	coverageBlocks: CoverageBlock[];
-}
-
-export interface CoverageBlock {
-  startLine: number;
-	endLine: number;
-}
 
 class Repository {
   owner: string = '';
@@ -55,7 +43,23 @@ class Repository {
       url: `/api/${this.owner}/${this.name}/test`
     }).then(coverage => {
       this.coverage = coverage as ProjectCoverage;
+      return this.coverage;
     });
+  }
+
+  coverageForFile(path: string): Line[] {
+    let lines: Line[] = [];
+    if (!this.coverage) return lines;
+    const filePath = `github.com/${this.owner}/${this.name}/${path}`;
+    for (const file of this.coverage.files) {
+      if (file.fileName === filePath) {
+        lines = file.coverageBlocks.map((c: CoverageBlock) => {
+          return {start: c.startLine-1, end: c.endLine-1, color: 'lime'};
+        });
+        break;
+      }
+    }
+    return lines;
   }
 }
 
