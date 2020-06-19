@@ -1,3 +1,11 @@
+# System Dependencies
+
+To build coverage-viewer, `node` and `npm` must be installed and available on
+the system path.
+
+To run coverage-viewer, `go` and `git` must be installed and available on the
+system path.
+
 # Building the Frontend
 
     cd frontend
