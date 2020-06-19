@@ -20,7 +20,7 @@ class RepositoryFile {
       return new Promise<RepositoryFile>((resolve) => {
         setTimeout(() => {
           resolve(fixtures['dce.go']);
-        }, 3000);
+        }, 1000);
       }).then(result => result as RepositoryFile);
     } else {
       return m.request({
