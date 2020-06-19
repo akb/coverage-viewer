@@ -54,7 +54,7 @@ class Repository {
     for (const file of this.coverage.files) {
       if (file.fileName === filePath) {
         lines = file.coverageBlocks.map((c: CoverageBlock) => {
-          return {start: c.startLine-1, end: c.endLine-1, color: 'lime'};
+          return {start: c.startLine-1, end: c.endLine-1, color: 'rgb(239, 254, 232)'};
         });
         break;
       }

@@ -57,7 +57,7 @@ class RepositoryViewer implements m.ClassComponent<Attrs> {
       return m('section.section',
         m('.container',
           m('.level.has-small-bottom-margin',
-            m('.level-left',
+            m('.level-left.has-small-left-margin',
               m('.level-item.is-size-5', `${this.repository.owner}/${this.repository.name}`),
               m('.level-item.is-size-5', `Stars: ${this.repository.stars}`)
             ),
@@ -80,7 +80,7 @@ class RepositoryViewer implements m.ClassComponent<Attrs> {
               )
             ),
 
-            m('.column.scroll-contents-vertical', m(FileViewer, {
+            m('.column.scroll-contents-vertical.file-content-panel', m(FileViewer, {
               repository: this.repository,
               path: this.filePath || '',
               key: this.filePath || '',

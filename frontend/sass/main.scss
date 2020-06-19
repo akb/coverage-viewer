@@ -53,6 +53,10 @@ body {
   margin-bottom: 1rem;
 }
 
+.has-small-left-margin {
+  margin-left: 0.5rem;
+}
+
 button.button {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -92,4 +96,30 @@ ul.file-list li {
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.file-content-panel {
+  @include thin-border;
+
+  border-radius: 0 4px 4px 0;
+  border-left-width: 0;
+}
+
+.content pre {
+  padding: 0;
+}
+
+.content table td {
+  border-bottom: none;
+}
+
+.content table td ,
+table.hljs-ln td.hljs-ln-numbers,
+table.hljs.ln td.hljs-ln-code {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.hljs {
+  background-color: $white;
 }
