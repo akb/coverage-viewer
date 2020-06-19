@@ -13,7 +13,6 @@ const (
 )
 
 func main() {
-	defer r.Stop()
 	http.Handle("/", handlers.LoggingHandler(os.Stdout, http.HandlerFunc(
 		func(w http.ResponseWriter, r *http.Request) {
 			http.ServeFile(w, r, "./index.html")

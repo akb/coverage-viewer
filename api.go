@@ -11,7 +11,6 @@ import (
 	"path"
 	"regexp"
 
-	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/google/go-github/github"
 )
 
@@ -34,14 +33,9 @@ var (
 )
 
 var gh *github.Client
-var r *recorder.Recorder
 
 func init() {
-	r, err := recorder.New("fixtures/github")
-	if err != nil {
-		log.Fatal(err)
-	}
-	gh = github.NewClient(&http.Client{Transport: r})
+	gh = github.NewClient(nil)
 }
 
 func api(w http.ResponseWriter, r *http.Request) {
