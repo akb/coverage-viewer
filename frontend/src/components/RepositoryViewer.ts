@@ -69,24 +69,43 @@ class RepositoryViewer implements m.ClassComponent<Attrs> {
             )
           ),
 
-          m('.box.repository-viewer', m('.columns.is-gapless',
-            m('.column.is-one-quarter.column-left.scroll-contents-vertical',
-              m('header.column-header.is-size-5', 'Files'),
-              m('ul.file-list',
-                this.repository.files.map(path => m('li', this.loadingFile
-                  ? path
-                  : m('a', {onclick: () => this.loadFile(path)}, path)
-                ))
+          m('.box.repository-viewer',
+            m('.columns.is-gapless',
+              m('.column.is-one-quarter.column-left',
+                m('header.column-header',
+                  m('span.is-size-5', 'Files'),
+                  m('span.is-size-7.file-counter', this.repository.files.length),
+                )
+              ),
+              m('.column.column-right',
+                m('header.column-header.is-size-5.is-family-code', {
+                  key: 'header'
+                }, this.filePath || ''),
               )
             ),
 
-            m('.column.scroll-contents-vertical.file-content-panel', m(FileViewer, {
-              repository: this.repository,
-              path: this.filePath || '',
-              key: this.filePath || '',
-              callback: () => { this.fileLoaded() },
-            }))
-          ))
+            m('.columns.is-gapless',
+              m('.column.is-one-quarter.column-left.scroll-contents-vertical.file-list',
+                m('ul',
+                  this.repository.files.map(path => this.loadingFile
+                    ? m('li.is-disabled', path)
+                    : this.filePath === path
+                      ? m('li.is-selected', path)
+                      : m('li', {onclick: () => this.loadFile(path)}, path)
+                  )
+                )
+              ),
+
+              m('.column.file-content-panel.column-right.scroll-contents-vertical',
+                m(FileViewer, {
+                  repository: this.repository,
+                  path: this.filePath || '',
+                  key: this.filePath || '',
+                  callback: () => { this.fileLoaded() },
+                })
+              )
+            )
+          )
         )
       );
     }

@@ -3,6 +3,7 @@
 @import "../node_modules/bulma/sass/utilities/initial-variables";
 
 $family-sans-serif: "Roboto", sans-serif;
+$family-code: "Roboto Mono", "Inconsolata", "Monaco", "Lucida Console", monospace;
 
 $primary: rgb(107, 169, 189);
 $input-background-color: rgb(237, 246, 250);
@@ -62,12 +63,21 @@ button.button {
   padding-right: 1rem;
 }
 
-.column.column-left header.column-header {
+header.column-header {
   @include thin-border;
 
-  border-radius: 4px 0 0 0;
   padding-top: 0.5rem;
   padding-left: 1rem;
+  height: 4vh;
+}
+
+.column.column-left header.column-header {
+  border-radius: 4px 0 0 0;
+}
+
+.column.column-right header.column-header {
+  border-radius: 0 4px 0 0;
+  border-left-width: 0px;
 }
 
 .box.repository-viewer {
@@ -76,7 +86,8 @@ button.button {
 }
 
 .box.repository-viewer .columns {
-  max-height: 80vh;
+  max-height: 76vh;
+  margin-bottom: 0;
 }
 
 .scroll-contents-vertical {
@@ -84,24 +95,45 @@ button.button {
   overflow-y: auto;
 }
 
-ul.file-list {
+.file-list {
   @include thin-border;
 
+  border-right-width: 1px;
   border-top-width: 0;
   border-radius: 0 0 0 4px;
 }
 
-ul.file-list li {
+.file-list ul li {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  cursor: pointer;
+}
+
+.file-list ul li.is-disabled {
+  cursor: wait;
+  color: $grey-light;
+}
+
+.file-list ul li.is-selected,
+.file-list ul li:hover {
+  background-color: rgb(237, 246, 250);
+}
+
+.file-list ul li.is-selected {
+  cursor: auto;
+}
+
+.file-list ul li.is-disabled:hover {
+  background-color: $white;
 }
 
 .file-content-panel {
   @include thin-border;
 
   border-radius: 0 4px 4px 0;
+  border-top-width: 0;
   border-left-width: 0;
 }
 
@@ -122,4 +154,13 @@ table.hljs.ln td.hljs-ln-code {
 
 .hljs {
   background-color: $white;
+}
+
+.file-counter {
+  border-radius: 5px;
+  background-color: rgb(144, 203, 182);
+  color: $white;
+  padding: 0 0.5rem;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
 }

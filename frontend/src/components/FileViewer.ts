@@ -61,7 +61,7 @@ class FileViewer implements m.ClassComponent<Attrs> {
       ? m('.content',
           m('pre', m('code#viewer.language-go', this.file.content))
         )
-      : m('.content', m('dev', 'No file currently selected.'));
+      : m('.content', ' ');
     }
   }
 }
