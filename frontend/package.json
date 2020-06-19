@@ -1,5 +1,5 @@
 {
-  "name": "coview-frontend",
+  "name": "coverage-viewer-frontend",
   "version": "1.0.0",
   "description": "Mithril TypeScript Example",
   "scripts": {
