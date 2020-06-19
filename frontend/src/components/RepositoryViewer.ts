@@ -56,28 +56,31 @@ class RepositoryViewer implements m.ClassComponent<Attrs> {
     } else {
       return m('section.section',
         m('.container',
-          m('.level',
+          m('.level.has-small-bottom-margin',
             m('.level-left',
-              m('.title', `${this.repository.owner}/${this.repository.name}`),
-              m('.title', `Stars: ${this.repository.stars}`)
+              m('.level-item.is-size-5', `${this.repository.owner}/${this.repository.name}`),
+              m('.level-item.is-size-5', `Stars: ${this.repository.stars}`)
             ),
 
             m('.level-right',
-              m('button.button.is-info', {
+              m('button.button.is-primary.is-size-7.is-uppercase.has-text-weight-bold', {
                 onclick: () => {this.runTests()}
-              }, 'RUN TESTS')
+              }, 'Run Tests')
             )
           ),
 
-          m('.box', m('.columns',
-            m('.column.is-one-quarter',
-              m('ul', this.repository.files.map(path => m('li', this.loadingFile
-                ? path
-                : m('a', {onclick: () => this.loadFile(path)}, path)
-              )))
+          m('.box.repository-viewer', m('.columns.is-gapless',
+            m('.column.is-one-quarter.column-left.scroll-contents-vertical',
+              m('header.column-header.is-size-5', 'Files'),
+              m('ul.file-list',
+                this.repository.files.map(path => m('li', this.loadingFile
+                  ? path
+                  : m('a', {onclick: () => this.loadFile(path)}, path)
+                ))
+              )
             ),
 
-            m('.column', m(FileViewer, {
+            m('.column.scroll-contents-vertical', m(FileViewer, {
               repository: this.repository,
               path: this.filePath || '',
               key: this.filePath || '',

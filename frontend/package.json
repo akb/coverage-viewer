@@ -7,7 +7,6 @@
     "build-css": "npm run compile-css && npm run postcss",
     "compile-css": "node-sass sass/main.scss public/style.css",
     "postcss": "postcss --use autoprefixer --output public/style.css public/style.css",
-    "watch-css": "npm run build-css -- --watch",
     "compile-js": "browserify --debug src/main.ts -p [ tsify --project src/tsconfig.json ] -o public/app.js",
     "build-js": "browserify src/main.ts -p [ tsify --project src/tsconfig.json ] | uglifyjs -cm -o public/app.js",
     "build": "npm run build-css && npm run build-js && npm run install",

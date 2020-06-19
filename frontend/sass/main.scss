@@ -1,14 +1,95 @@
 @charset "utf-8";
 
 @import "../node_modules/bulma/sass/utilities/initial-variables";
-// bulma customizations go here
+
+$family-sans-serif: "Roboto", sans-serif;
+
+$primary: rgb(107, 169, 189);
+$input-background-color: rgb(237, 246, 250);
+$input-border-color: transparent;
+$input-shadow: none;
+
 @import "../node_modules/bulma/bulma";
+
+@mixin thin-border {
+  border-style: solid;
+  border-color: rgb(231, 231, 230);
+  border-width: 1px;
+}
+
+html {
+  min-height: 100vh;
+}
 
 body {
   background-color: rgb(248, 252, 253);
+  min-height: 100vh;
 }
 
-.button.is-info {
+.card {
+  @include thin-border;
+  border-radius: 4px;
+}
+
+.card.column.is-gapless {
+  padding: 0;
+}
+
+.card-footer-item {
   width: 100%;
   border-radius: 0 0 4px 4px;
+}
+
+.card-content {
+  padding-left: 4.5rem;
+  padding-right: 4.5rem;
+}
+
+.field-label.is-prefix {
+  margin-right: 0.5rem;
+}
+
+.level.has-small-bottom-margin {
+  margin-bottom: 1rem;
+}
+
+button.button {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.column.column-left header.column-header {
+  @include thin-border;
+
+  border-radius: 4px 0 0 0;
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+}
+
+.box.repository-viewer {
+  padding: 0;
+  max-height: 80vh;
+}
+
+.box.repository-viewer .columns {
+  max-height: 80vh;
+}
+
+.scroll-contents-vertical {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+ul.file-list {
+  @include thin-border;
+
+  border-top-width: 0;
+  border-radius: 0 0 0 4px;
+}
+
+ul.file-list li {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
