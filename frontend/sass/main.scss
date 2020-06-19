@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+@import "../node_modules/bulma/sass/utilities/initial-variables";
+// bulma customizations go here
+@import "../node_modules/bulma/bulma";
+
+body {
+  background-color: rgb(248, 252, 253);
+}
+
+.button.is-info {
+  width: 100%;
+  border-radius: 0 0 4px 4px;
+}
