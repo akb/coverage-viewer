@@ -4,7 +4,7 @@ import global from './global';
 import LoadForm from './components/LoadForm';
 import RepositoryViewer from './components/RepositoryViewer';
 
-global.debug = true;
+global.debug = false;
 
 m.route(document.body, '/', {
   '/': LoadForm,
